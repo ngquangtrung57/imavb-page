@@ -515,7 +515,7 @@ body::after {
 
 /* ------------------------------------------------------------------ bibtex */
 .bib { position: relative; background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--radius); }
-.bib pre { margin: 0; padding: 22px 22px 22px; overflow-x: auto; font-family: var(--mono); font-size: 13px; line-height: 1.7; color: #D8D2C6; }
+.bib pre { margin: 0; padding: 22px 22px 22px; overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--mono); font-size: 13px; line-height: 1.7; color: #D8D2C6; }
 .bib__head { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px 10px 22px; border-bottom: 1px solid var(--line); color: var(--fg-3); }
 .bib__copy { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--ink-3); border-radius: 8px; padding: 6px 10px; font-size: 13px; cursor: pointer; color: var(--paper); }
 .bib__copy svg { width: 15px; height: 15px; }
