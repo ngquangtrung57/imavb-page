@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Senses Wide Shut · IMAVB</title>
+<meta name="description" content="Senses Wide Shut: A Representation–Action Gap in Omnimodal LLMs (NeurIPS 2026). IMAVB is a 500-clip movie benchmark with a 2×2 design. Omnimodal LLMs encode that a premise is false, but almost never say so.">
+<meta name="theme-color" content="#0B0D12">
+<link rel="canonical" href="https://ngquangtrung57.github.io/imavb-page/">
+<link rel="icon" href="static/images/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Senses Wide Shut: A Representation–Action Gap in Omnimodal LLMs">
+<meta property="og:description" content="Omnimodal LLMs encode that a question's premise contradicts what they see or hear, but almost never act on it. IMAVB · NeurIPS 2026.">
+<meta property="og:url" content="https://ngquangtrung57.github.io/imavb-page/">
+<meta property="og:image" content="https://ngquangtrung57.github.io/imavb-page/static/images/og_card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Senses Wide Shut: A Representation–Action Gap in Omnimodal LLMs">
+<meta name="twitter:description" content="Omnimodal LLMs know the premise is false. They almost never say it. IMAVB · NeurIPS 2026.">
+<meta name="twitter:image" content="https://ngquangtrung57.github.io/imavb-page/static/images/og_card.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arxiv" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6"/></symbol>
+    <symbol id="i-pdf" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7c-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.8V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l10.5-6.5z"/></symbol>
+    <symbol id="i-quote" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 7l-4 5 4 5M16 7l4 5-4 5M13.5 5l-3 14"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M2 12c2.6-4.3 5.9-6.5 10-6.5s7.4 2.2 10 6.5c-2.6 4.3-5.9 6.5-10 6.5S4.6 16.3 2 12z"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></symbol>
+    <symbol id="i-ear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M7 9a5 5 0 0 1 10 0c0 3.2-3 4-3 6.5a3 3 0 0 1-5.5 1.6M10 9.5a2 2 0 0 1 4 0c0 1.2-1 1.6-1.6 2.3"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M8 8h11v12H8zM5 16V4h11"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#tldr">Skip to content</a>
+
+<!-- ============================ HERO ============================ -->
+<header class="hero" id="top">
+  <div class="hero__bar hero__bar--top">
+    <span class="mono">IMAVB · 500 CLIPS · 2 × 2</span>
+    <span class="mono hero__bar-r">NeurIPS 2026</span>
+  </div>
+
+  <div class="hero__screen">
+    <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="static/images/hero_poster.jpg" aria-hidden="true" tabindex="-1">
+      <source src="static/videos/hero_loop.mp4" type="video/mp4">
+    </video>
+    <div class="hero__shade"></div>
+    <div class="hero__content">
+      <a class="badge" href="https://neurips.cc/" rel="noopener">
+        <span class="badge__dot"></span>NeurIPS 2026
+      </a>
+      <h1 class="hero__title">
+        Senses <em>Wide</em> Shut
+      </h1>
+      <p class="hero__subtitle">A Representation–Action Gap in Omnimodal LLMs</p>
+    </div>
+    <div class="hero__eye" aria-hidden="true">
+      <svg viewBox="0 0 120 60" class="eye">
+        <path class="eye__outline" d="M6 30C22 10 40 4 60 4s38 6 54 26C98 50 80 56 60 56S22 50 6 30z"/>
+        <circle class="eye__iris" cx="60" cy="30" r="15"/>
+        <circle class="eye__pupil" cx="60" cy="30" r="6"/>
+        <path class="eye__lid" d="M6 30C22 10 40 4 60 4s38 6 54 26z"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="hero__bar hero__bar--bottom">
+    <div class="authors">
+      <p class="authors__names">
+        <span>Nguyen Quang Trung<sup>1,2*</sup></span>
+        <span>Yiming Gao<sup>1,2*</sup></span>
+        <span>Fanyi Pu<sup>1,2</sup></span>
+        <span>Kaichen Zhang<sup>1,2</sup></span>
+        <span>Shuo Sun<sup>3</sup></span>
+        <span>Ziwei Liu<sup>1,2†</sup></span>
+      </p>
+      <p class="authors__aff">
+        <span><sup>1</sup>Nanyang Technological University</span>
+        <span><sup>2</sup>LMMs-Lab Team</span>
+        <span><sup>3</sup>Johns Hopkins University</span>
+      </p>
+      <p class="authors__note">* Equal contribution &nbsp;&nbsp; † Corresponding author</p>
+    </div>
+    <nav class="links" aria-label="Paper resources">
+      <a class="btn" href="https://arxiv.org/abs/2605.13737" rel="noopener"><svg><use href="#i-arxiv"/></svg>Paper</a>
+      <a class="btn" href="static/pdf/imavb_preprint.pdf"><svg><use href="#i-pdf"/></svg>PDF</a>
+      <a class="btn" href="https://github.com/ngquangtrung57/imavb" rel="noopener"><svg><use href="#i-code"/></svg>Code</a>
+      <a class="btn" href="https://huggingface.co/datasets/ngqtrung/IMAVB" rel="noopener"><span class="btn__emoji" aria-hidden="true">🤗</span>Dataset</a>
+      <a class="btn" href="#video"><svg><use href="#i-play"/></svg>Video</a>
+      <a class="btn" href="#bibtex"><svg><use href="#i-quote"/></svg>BibTeX</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ TL;DR ============================ -->
+<section class="sec sec--ink tldr" id="tldr">
+  <div class="wrap">
+    <p class="kicker"><span>01</span> TL;DR</p>
+    <h2 class="tldr__lede reveal">The model <em class="c-probe">knows</em> the premise is false.<br>It almost never <em class="c-false">says</em> so.</h2>
+    <p class="tldr__body reveal">We ask omnimodal LLMs about movie scenes and change one detail in the question. A linear probe on their hidden states finds the false premise up to 86% of the time. In their answers, seven of eight open models reject it at most 16.2% of the time for vision and 6.6% for audio.</p>
+
+    <div class="kvs reveal" role="img" aria-label="Knows versus says. Hidden-state probe up to 86 percent. Rejection in the output at most 16.2 percent for vision and at most 6.6 percent for audio.">
+      <div class="kvs__row kvs__row--knows">
+        <div class="kvs__label"><span class="kvs__tag">Knows</span><span class="kvs__desc">Linear probe on hidden states</span></div>
+        <div class="kvs__track"><div class="kvs__fill" style="--v:86"></div></div>
+        <div class="kvs__num"><span class="kvs__pre">up to</span> 86<small>%</small></div>
+      </div>
+      <div class="kvs__row kvs__row--says">
+        <div class="kvs__label"><span class="kvs__tag">Says · vision</span><span class="kvs__desc">Rejects the false visual premise</span></div>
+        <div class="kvs__track"><div class="kvs__fill" style="--v:16.2"></div></div>
+        <div class="kvs__num"><span class="kvs__pre">≤</span>16.2<small>%</small></div>
+      </div>
+      <div class="kvs__row kvs__row--says">
+        <div class="kvs__label"><span class="kvs__tag">Says · audio</span><span class="kvs__desc">Rejects the false audio premise</span></div>
+        <div class="kvs__track"><div class="kvs__fill" style="--v:6.6"></div></div>
+        <div class="kvs__num"><span class="kvs__pre">≤</span>6.6<small>%</small></div>
+      </div>
+      <p class="kvs__foot mono">Behaviour: 7 of 8 open-source omnimodal LLMs, fixed option order. Probe: best model, Baichuan-Omni-1.5 excluded.</p>
+    </div>
+
+    <p class="tldr__punch reveal">The bottleneck is <em>acting</em> on the encoded mismatch signal, not <em>encoding</em> it.</p>
+  </div>
+</section>
+
+<!-- ============================ VIDEO ============================ -->
+<section class="sec sec--ink" id="video">
+  <div class="wrap">
+    <p class="kicker"><span>02</span> Overview video</p>
+    <div class="screen reveal">
+      <video controls poster="static/images/promo_poster.jpg" src="static/videos/imavb_promo.mp4" preload="metadata"></video>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ABSTRACT ============================ -->
+<section class="sec sec--paper" id="abstract">
+  <div class="wrap wrap--text">
+    <p class="kicker"><span>03</span> Abstract</p>
+    <p class="abstract reveal">When an omnimodal large language model accepts a question whose textual premise contradicts what it actually sees or hears, does the failure lie in perception or in action? Recent omnimodal models are positioned as perception-grounded agents that jointly process video, audio, and text, yet a basic form of grounding remains untested: catching a textual claim that conflicts with the model's own sensory input. We introduce IMAVB, a curated benchmark of 500 multi-minute movie clips with a 2×2 design crossing target modality (vision, audio) and premise condition (standard, misleading), which lets us measure conflict detection separately from ordinary multimodal comprehension. Across eight open-source omnimodal LLMs and Gemini&nbsp;3.1&nbsp;Pro, we document a <em>Representation–Action Gap</em>: hidden states encode premise–perception mismatches reliably for vision and more weakly for audio, even when the same models almost never reject the false claim in their outputs. Behaviorally, models fall into two failure modes: <em>under-rejection</em>, in which they answer misleading questions as if the false premise were true; and <em>over-rejection</em>, in which they reject more often but also reject standard questions, sacrificing ordinary comprehension accuracy. The gap is modality-asymmetric (models reject false audio premises far less often than false visual ones) and prompt-resistant across seven variants. As an initial diagnostic intervention, a probe-guided logit adjustment (PGLA) re-injects the encoded mismatch signal into decoding and consistently improves rejection behavior at a bounded cost to standard accuracy. Together, these results suggest the bottleneck for omnimodal grounding lies in acting on the encoded mismatch signal rather than in encoding it.</p>
+  </div>
+  <div class="wrap">
+    <figure class="print reveal">
+      <img src="static/images/teaser.webp" width="1536" height="1024" loading="lazy" alt="Overview figure. Left: a video of a cat chasing a red ball with soft guitar music. Middle: the model's internal representation correctly encodes the cat and the guitar music. Right: text prompts with a misleading premise (a dog, or a loud drum beat). The correct action is to flag the wrong detail, but the model answers the question as if the premise were true.">
+      <figcaption><span class="mono">Figure 1.</span> Overview of the Representation–Action Gap on IMAVB. The model encodes what it saw and heard, yet it answers a question built on a false detail as if the detail were true.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ EXPLORER ============================ -->
+<section class="sec sec--ink" id="examples">
+  <div class="wrap">
+    <p class="kicker"><span>04</span> Try it yourself</p>
+    <h2 class="h2 reveal">One clip, four questions.<br><em>One word</em> changes.</h2>
+    <p class="lead reveal">Watch the excerpt with sound, then pick a cell of the 2×2. Misleading questions copy the standard question and swap exactly one premise detail. The correct answer then becomes E or F.</p>
+
+    <div class="explorer reveal" id="explorer">
+      <div class="explorer__clips" role="tablist" aria-label="Choose a clip"></div>
+
+      <div class="explorer__grid">
+        <div class="player">
+          <div class="player__frame">
+            <video id="exVideo" controls playsinline preload="metadata"></video>
+          </div>
+          <div class="player__meta mono">
+            <span id="exMeta"></span>
+          </div>
+          <p class="player__cue" id="exCue"></p>
+        </div>
+
+        <div class="qpanel">
+          <div class="switch" role="group" aria-label="Condition">
+            <div class="matrix" id="exMatrix">
+              <span class="matrix__corner"></span>
+              <span class="matrix__col mono">Standard</span>
+              <span class="matrix__col mono">Misleading</span>
+              <span class="matrix__row mono v"><svg><use href="#i-eye"/></svg>Vision</span>
+              <button class="cell v" data-m="vision" data-p="std" aria-pressed="false"><span>A–D</span></button>
+              <button class="cell v mis" data-m="vision" data-p="mis" aria-pressed="false"><span>E</span></button>
+              <span class="matrix__row mono a"><svg><use href="#i-ear"/></svg>Audio</span>
+              <button class="cell a" data-m="audio" data-p="std" aria-pressed="false"><span>A–D</span></button>
+              <button class="cell a mis" data-m="audio" data-p="mis" aria-pressed="false"><span>F</span></button>
+            </div>
+          </div>
+
+          <div class="qcard" id="exCard" aria-live="polite">
+            <div class="qcard__head mono"><span id="exTag"></span><span id="exCat"></span></div>
+            <p class="qcard__q" id="exQ"></p>
+            <ol class="opts" id="exOpts"></ol>
+            <div class="qcard__foot">
+              <button class="btn btn--ghost" id="exReveal">Show answer</button>
+              <p class="qcard__swap" id="exSwap"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note mono">Excerpts from IMAVB clips (dataset: <a href="https://huggingface.co/datasets/ngqtrung/IMAVB">ngqtrung/IMAVB</a>). Each excerpt starts at the question's 10-second answer window. Click an option to guess.</p>
+  </div>
+</section>
+
+<!-- ============================ BENCHMARK ============================ -->
+<section class="sec sec--paper" id="benchmark">
+  <div class="wrap">
+    <p class="kicker"><span>05</span> The benchmark</p>
+    <h2 class="h2 reveal">IMAVB: long movie scenes,<br>with <em>every sense</em> left on.</h2>
+    <p class="lead reveal">Video and audio stay unedited. Only the textual question varies. This lets us measure conflict detection separately from ordinary comprehension, while both modalities stay present and compete.</p>
+
+    <dl class="stats reveal">
+      <div class="stat"><dt>Movie clips</dt><dd data-count="500">500</dd></div>
+      <div class="stat"><dt>Hours of video</dt><dd data-count="20.7" data-dec="1">20.7</dd></div>
+      <div class="stat"><dt>Clip length (median 140 s)</dt><dd>60–300<small> s</small></dd></div>
+      <div class="stat"><dt>Questions</dt><dd data-count="2000" data-sep="1">2,000</dd></div>
+      <div class="stat"><dt>Question categories</dt><dd data-count="8">8</dd></div>
+      <div class="stat"><dt>Misleading subcategories (9 V · 9 A)</dt><dd data-count="18">18</dd></div>
+      <div class="stat"><dt>Items verified by hand</dt><dd data-count="100">100<small>%</small></dd></div>
+      <div class="stat"><dt>Independent agreement on misleading premises</dt><dd data-count="89">89<small>%</small></dd></div>
+    </dl>
+
+    <div class="design reveal">
+      <div class="design__text">
+        <h3 class="h3">The 2×2 design</h3>
+        <p>Every clip gets four questions. The rows pick the target modality. The columns pick the premise. A misleading question is the standard question with exactly one premise detail swapped, for example “maroon shirt” to “blue shirt”.</p>
+        <p>Options E (“The visual detail in the question is incorrect”) and F (“The audio detail in the question is incorrect”) appear in every prompt. Standard answers are A–D.</p>
+        <ul class="cats" aria-label="Question categories">
+          <li>existence</li><li>time order</li><li>emotional</li><li>scene description</li><li>cross modality</li><li>plot</li><li>causal</li><li>temporal</li>
+        </ul>
+      </div>
+      <div class="twobytwo" role="img" aria-label="Two by two design. Vision standard: maroon polo shirt, answer from A to D. Vision misleading: blue polo shirt, answer E. Audio standard: delicate string melody, answer from A to D. Audio misleading: loud drum beat, answer F.">
+        <span></span>
+        <span class="tbt__col mono">Standard premise</span>
+        <span class="tbt__col mono">Misleading premise</span>
+        <span class="tbt__row v"><svg><use href="#i-eye"/></svg><span>Vision</span></span>
+        <div class="tbt__cell v"><p>“…the younger man wearing a <mark class="ok">maroon</mark> polo shirt…”</p><span class="tbt__ans mono">answer A–D</span></div>
+        <div class="tbt__cell v mis"><p>“…the younger man wearing a <mark class="bad">blue</mark> polo shirt…”</p><span class="tbt__ans mono">answer E</span></div>
+        <span class="tbt__row a"><svg><use href="#i-ear"/></svg><span>Audio</span></span>
+        <div class="tbt__cell a"><p>“…while a <mark class="ok">delicate string melody</mark> swells…”</p><span class="tbt__ans mono">answer A–D</span></div>
+        <div class="tbt__cell a mis"><p>“…while a <mark class="bad">loud drum beat</mark> swells…”</p><span class="tbt__ans mono">answer F</span></div>
+      </div>
+    </div>
+
+    <figure class="print print--wide reveal">
+      <img src="static/images/pipeline_gen.webp" width="1536" height="1024" loading="lazy" alt="Annotation pipeline. Movie clips from BingeSociety, BoxofficeMoviesScenes and Condensed Movies. Pass 1 generates raw captions per 10-second segment from a vision stream (GPT-4o), an audio stream (Qwen3-Omni Captioner) and an omni stream (Qwen3-Omni Thinking). Pass 2 fuses them with the trust hierarchy Omni over Vision over Audio. Pass 3 unifies a sequential narrative. Questions follow the 2×2 design, then every item is verified by hand.">
+      <figcaption><span class="mono">Figure 2.</span> IMAVB three-pass annotation pipeline and 2×2 QA generation design. Pass 1 writes raw captions per 10-second segment (vision: GPT-4o at 1 fps, audio: Qwen3-Omni-30B-A3B-Captioner, omni: Qwen3-Omni-30B-A3B-Thinking). Pass 2 enhances detail with the trust hierarchy Omni &gt; Vision &gt; Audio. Pass 3 unifies the narrative. Qwen3.5-27B runs Passes 2 and 3 and the QA generation.</figcaption>
+    </figure>
+
+    <p class="verify reveal">We verified all 2,000 items by hand, watching each clip with audio. An independent annotator re-rated 200 items from 50 videos: 89% agreement on misleading-premise judgments, and within one scale point on 94–96% of items per criterion.</p>
+  </div>
+</section>
+
+<!-- ============================ RESULTS ============================ -->
+<section class="sec sec--paper sec--tight" id="results">
+  <div class="wrap">
+    <p class="kicker"><span>06</span> Results</p>
+    <h2 class="h2 reveal">Two ways to fail:<br><em>under</em>- and <em>over</em>-rejection.</h2>
+
+    <div class="modes reveal">
+      <div class="mode mode--under">
+        <p class="mode__tag mono">Under-rejection · 7 of 8 open models</p>
+        <p>They answer 40–75% of standard questions, yet reject misleading ones in only ≤16.2% (vision) and ≤6.6% (audio) of cases. Four models score 0% on misleading audio.</p>
+      </div>
+      <div class="mode mode--over">
+        <p class="mode__tag mono">Over-rejection · Qwen3-Omni, Gemini 3.1 Pro</p>
+        <p>They reject more often (72.8% and 94.0% on vision), but they trade 15–25 pp of standard accuracy.</p>
+      </div>
+    </div>
+
+    <div class="chartcard reveal">
+      <div class="chartcard__head">
+        <div>
+          <h3 class="h3">Baseline accuracy, fixed option order (%)</h3>
+          <p class="legend">
+            <span class="lg lg--sv">Standard · vision</span>
+            <span class="lg lg--sa">Standard · audio</span>
+            <span class="lg lg--mv">Misleading · vision</span>
+            <span class="lg lg--ma">Misleading · audio</span>
+          </p>
+        </div>
+        <div class="seg" role="group" aria-label="Chart view" id="resView">
+          <button aria-pressed="true" data-view="all">All</button>
+          <button aria-pressed="false" data-view="std">Standard</button>
+          <button aria-pressed="false" data-view="mis">Misleading</button>
+        </div>
+      </div>
+      <div class="chart" id="chartBaseline"></div>
+      <p class="chartcard__foot mono">Bal = ½((std_v + std_a)/2 + (mis_v + mis_a)/2). Human: 1 volunteer, 50-video subset, unaware of the design. Hover or tap a bar for its value.</p>
+    </div>
+
+    <ul class="facts reveal">
+      <li><strong>Modality-asymmetric.</strong> Models reject false audio premises far less often than false visual ones.</li>
+      <li><strong>Prompt-resistant.</strong> The gap survives seven prompt variants (A1–A7), option shuffling, and stratification by video length.</li>
+      <li><strong>Solvable.</strong> A volunteer who did not know the design detected 78% of the false premises on a 50-video subset.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ GAP ============================ -->
+<section class="sec sec--ink gap" id="gap">
+  <div class="wrap">
+    <p class="kicker"><span>07</span> The Representation–Action Gap</p>
+    <h2 class="h2 reveal">Inside, the signal is there.<br><em class="c-probe">Knows</em> vs. <em class="c-false">says</em>, model by model.</h2>
+    <p class="lead reveal">We train linear probes on each model's hidden states to tell a misleading question from its standard twin. The violet dot is what the probe recovers. The red dot is how often the model rejects the false premise in its answer.</p>
+
+    <div class="chartcard chartcard--ink reveal">
+      <div class="chartcard__head">
+        <p class="legend">
+          <span class="lg lg--probe">HS probe</span>
+          <span class="lg lg--resid">Residualized probe</span>
+          <span class="lg lg--beh">Behaviour (mis)</span>
+          <span class="lg lg--ref">Text-only baselines</span>
+        </p>
+        <div class="seg seg--ink" role="group" aria-label="Modality" id="gapView">
+          <button aria-pressed="true" data-mod="v"><svg><use href="#i-eye"/></svg>Vision</button>
+          <button aria-pressed="false" data-mod="a"><svg><use href="#i-ear"/></svg>Audio</button>
+        </div>
+      </div>
+      <div class="chart" id="chartGap"></div>
+      <p class="chartcard__foot mono">† Baichuan-Omni-1.5 is excluded from aggregates because its layer-2 signal is near ceiling. Dashed lines: text-only TF-IDF and SBERT classifiers on the question text alone.</p>
+    </div>
+
+    <div class="cols3">
+      <div class="panel reveal">
+        <p class="panel__k mono">Text confound control</p>
+        <p>The two questions differ by one swapped detail, so text alone is partly predictive. TF-IDF reaches 73.4% (vision) and 71.4% (audio). SBERT reaches 66.8% and 57.3%.</p>
+      </div>
+      <div class="panel reveal">
+        <p class="panel__k mono">Residualization</p>
+        <p>We project out text-predictive features from the hidden states (Ridge regression with orthogonal projection) and retrain the probes. They stay above SBERT for every model and modality, and above TF-IDF for vision. The audio evidence is weaker.</p>
+      </div>
+      <div class="panel reveal">
+        <p class="panel__k mono">Runner-up analysis</p>
+        <div class="runner" role="img" aria-label="The correct reject option is the runner-up on 23.0 percent of misleading items, against 16.7 percent for uniform ranking and 15.2 percent on standard twins.">
+          <div class="runner__row"><span>Misleading items</span><b style="--v:23.0" class="p"></b><em>23.0%</em></div>
+          <div class="runner__row"><span>Uniform reference</span><b style="--v:16.7"></b><em>16.7%</em></div>
+          <div class="runner__row"><span>Standard twins</span><b style="--v:15.2"></b><em>15.2%</em></div>
+        </div>
+        <p>For the 7 under-rejecting models, the correct reject option is often the runner-up (25.8% vision, 20.2% audio). A residue of the signal reaches the output logits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PGLA ============================ -->
+<section class="sec sec--paper" id="pgla">
+  <div class="wrap">
+    <p class="kicker"><span>08</span> A diagnostic intervention</p>
+    <h2 class="h2 reveal">Feed the signal back,<br>and the behaviour <em>moves</em>.</h2>
+
+    <div class="pgla">
+      <div class="pgla__text reveal">
+        <p>If the encoded signal is only an artifact of probing, feeding it back to the output should do nothing. <strong>Probe-guided logit adjustment (PGLA)</strong> tests this. A two-layer MLP probe reads the hidden state at the peak layer. Its confidence <span class="math-inline">g = P_{\text{mis}}^{\,p}</span> gates a boost on the reject options E and F.</p>
+        <div class="eq" id="pglaEq">\begin{aligned} L'_E &= L_E + \sigma\!\bigl(\gamma(g-\alpha)\bigr)\cdot(s\cdot\Delta+\delta) - \tfrac{\beta}{2} \\[2pt] L'_F &= L_F + \sigma\!\bigl(\gamma(g-\alpha)\bigr)\cdot(s\cdot\Delta+\delta) + \tfrac{\beta}{2} \end{aligned}</div>
+        <p class="small">Δ is the gap between the best content logit (A–D) and the best reject logit (E, F). β corrects the E/F positional bias. PGLA needs no input perturbation and no second forward pass. Results use 5-fold cross-validation.</p>
+
+        <div class="chips">
+          <div class="chip chip--main"><b>+15.0</b><span>pp mean ΔBal, unconstrained</span></div>
+          <div class="chip"><b>+9.9</b><span>pp at a 3 pp standard-accuracy budget</span></div>
+          <div class="chip"><b>+5.4</b><span>pp at a 1 pp budget</span></div>
+        </div>
+
+        <aside class="callout">
+          <p class="callout__k mono">A diagnostic, not a fix</p>
+          <p>PGLA shows that the encoded signal is sufficient to shift behaviour. For seven models it moves the decision boundary toward rejection at some standard-accuracy cost. It does not improve perceptual grounding.</p>
+        </aside>
+      </div>
+
+      <div class="chartcard reveal">
+        <div class="chartcard__head">
+          <h3 class="h3">ΔBal per model (pp)</h3>
+        </div>
+        <div class="chart" id="chartPgla"></div>
+        <p class="chartcard__foot mono">Baseline Bal → Bal after PGLA. PGLA improves all 8 models.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ INTERFERENCE ============================ -->
+<section class="sec sec--paper sec--tight" id="interference">
+  <div class="wrap">
+    <p class="kicker"><span>09</span> Cross-modal interference</p>
+    <div class="interf">
+      <div class="interf__text reveal">
+        <h2 class="h2 h2--sm">Does the other sense get in the way?</h2>
+        <p>We run each open model with one modality removed and measure the change in misleading accuracy. A→V removes audio and reads mis_v. V→A removes video and reads mis_a. Positive values mean the removed modality was interfering.</p>
+        <p>The effect depends on the architecture. Audio interferes with visual detection for three models. MiniCPM-o 2.6 is the only model where joint audio-visual input helps. For Qwen3-Omni, video interferes with audio detection.</p>
+      </div>
+      <div class="chartcard reveal">
+        <div class="chart" id="chartInterf"></div>
+        <p class="chartcard__foot mono">pp change in misleading accuracy when the other modality is removed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BIBTEX ============================ -->
+<section class="sec sec--ink" id="bibtex">
+  <div class="wrap wrap--text">
+    <p class="kicker"><span>10</span> Citation</p>
+    <div class="bib reveal">
+      <div class="bib__head"><span class="mono">BibTeX</span><button class="bib__copy" id="bibCopy" aria-label="Copy BibTeX"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div>
+<pre id="bibText"><code>@inproceedings{nguyen2026senses,
+  title     = {Senses Wide Shut: A Representation--Action Gap in Omnimodal {LLM}s},
+  author    = {Nguyen Quang, Trung and Gao, Yiming and Pu, Fanyi and Zhang, Kaichen and Sun, Shuo and Liu, Ziwei},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2026}
+}</code></pre>
+    </div>
+
+    <h3 class="h3 ack__h">Acknowledgements</h3>
+    <p class="ack">This study is supported by the Ministry of Education, Singapore, under its MOE AcRF Tier 2 (MOE-T2EP20223-0002). This research is also supported by cash and in-kind funding from NTU S-Lab and industry partner(s). We wish to acknowledge the support of Nanyang Technological University through the URECA Undergraduate Research Programme.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__brand">
+      <svg viewBox="0 0 120 60" class="eye eye--small" aria-hidden="true"><path class="eye__outline" d="M6 30C22 10 40 4 60 4s38 6 54 26C98 50 80 56 60 56S22 50 6 30z"/><circle class="eye__iris" cx="60" cy="30" r="15"/><circle class="eye__pupil" cx="60" cy="30" r="6"/></svg>
+      <p><span class="serif">Senses Wide Shut</span><br><span class="mono">IMAVB · NeurIPS 2026</span></p>
+    </div>
+    <nav class="foot__links mono" aria-label="Footer links">
+      <a href="https://arxiv.org/abs/2605.13737">arXiv 2605.13737</a>
+      <a href="static/pdf/imavb_preprint.pdf">PDF</a>
+      <a href="https://github.com/ngquangtrung57/imavb">GitHub</a>
+      <a href="https://huggingface.co/datasets/ngqtrung/IMAVB">Hugging Face</a>
+      <a href="#top">Back to top ↑</a>
+    </nav>
+  </div>
+  <p class="foot__fine wrap mono">Movie excerpts are short clips from IMAVB, shown for research illustration. Video sources: @BingeSociety, @BoxofficeMoviesScenes, Condensed Movies.</p>
+</footer>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="static/js/main.js"></script>
+</body>
+</html>
