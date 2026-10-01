@@ -242,7 +242,7 @@
         <li><strong>Pass 1, captions.</strong> We cut each clip into 10-second segments and caption each one three times: vision with GPT-4o at 1 fps, audio with Qwen3-Omni-30B-A3B-Captioner, and both together with Qwen3-Omni-30B-A3B-Thinking.</li>
         <li><strong>Pass 2, enhancement.</strong> Qwen3.5-27B fuses the three captions of each segment under the trust hierarchy Omni &gt; Vision &gt; Audio, so audio-only captions cannot over-infer visual events.</li>
         <li><strong>Pass 3, narrative.</strong> Qwen3.5-27B merges all segments into one timestamped narrative per clip, and it then writes the four questions, which span 8 question categories and 18 misleading subcategories.</li>
-        <li><strong>Verification.</strong> We checked all 2,000 items by hand while watching each clip with audio. An independent annotator agrees with our labels on 89% of misleading-premise judgments.</li>
+        <li><strong>Verification.</strong> We checked all 2,000 items by hand while watching each clip with audio.</li>
       </ol>
     </div>
   </div>
@@ -258,8 +258,7 @@
         Seven of the eight open-source models <em>under-reject</em>: they answer 40–75% of standard questions
         correctly, but they reject at most 16.2% of false visual premises and 6.6% of false audio premises, and four of
         them never reject a false audio premise under fixed option order. Qwen3-Omni and Gemini 3.1 Pro instead
-        <em>over-reject</em>: they reject more often, but they lose 15–25 points of standard accuracy. A volunteer who
-        did not know the design detects 84% of the false visual premises and 72% of the false audio premises.
+        <em>over-reject</em>: they reject more often, but they lose 15–25 points of standard accuracy.
       </p>
     </header>
 
@@ -276,9 +275,8 @@
           <tr><th scope="row" class="l">Baichuan-Omni-1.5</th><td>66.0</td><td>66.8</td><td>13.8</td><td>0.6</td><td class="sep">36.8</td></tr>
           <tr><th scope="row" class="l">Video-SALMONN-2</th><td>69.8</td><td>66.6</td><td>16.2</td><td>0.0</td><td class="sep">38.2</td></tr>
           <tr><th scope="row" class="l">Qwen3-Omni</th><td>40.6</td><td>46.6</td><td><b>72.8</b></td><td><b>23.6</b></td><td class="sep"><b>45.9</b></td></tr>
-          <tr class="grp"><th colspan="6" scope="rowgroup">proprietary model and human reference</th></tr>
+          <tr class="grp"><th colspan="6" scope="rowgroup">proprietary model</th></tr>
           <tr><th scope="row" class="l">Gemini 3.1 Pro</th><td>50.2</td><td>53.8</td><td>94.0</td><td>48.6</td><td class="sep">61.6</td></tr>
-          <tr><th scope="row" class="l">Human</th><td>92.0</td><td>86.0</td><td>84.0</td><td>72.0</td><td class="sep">83.5</td></tr>
         </tbody>
       </table>
     </div>
@@ -286,8 +284,7 @@
       Baseline accuracy in percent under fixed option order. std_v and std_a are standard vision and audio questions,
       mis_v and mis_a are misleading ones, and Bal is the balanced accuracy, ½((std_v + std_a)/2 + (mis_v + mis_a)/2).
       Bold marks the best open-source value of each column. Gemini 3.1 Pro runs through its API on this experiment only.
-      The human row is one volunteer on a 50-video subset who was not told that a premise could be false. The paper
-      also reports shuffled option orders, seven prompt variants and a length analysis, and none of them closes the gap.
+      The paper also reports shuffled option orders, seven prompt variants and a length analysis, and none of them closes the gap.
     </p>
 
     <h3 class="sub" id="interference">Cross-modal interference</h3>
